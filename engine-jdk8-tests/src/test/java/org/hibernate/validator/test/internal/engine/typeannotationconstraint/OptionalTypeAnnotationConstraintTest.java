@@ -74,6 +74,9 @@ public class OptionalTypeAnnotationConstraintTest {
         assertNumberOfViolations( constraintViolations, 0 );
     }
 
+    /**
+     * Actual: Fails with NullPointerException (Unexpected exception during isValid call)
+     */
     @Test
     public void not_null_type_on_optional_is_validated_for_null_value() {
         Model model = new Model();
@@ -86,6 +89,9 @@ public class OptionalTypeAnnotationConstraintTest {
         assertCorrectConstraintTypes(constraintViolations, NotNull.class);
     }
 
+    /**
+     * Actual: NotNull violation occurs on container's annotation
+     */
     @Test
     public void not_null_type_on_optional_is_validated_for_empty_value() {
         Model model = new Model();
@@ -98,6 +104,9 @@ public class OptionalTypeAnnotationConstraintTest {
         assertCorrectConstraintTypes(constraintViolations, NotNullTypeUse.class);
     }
 
+    /**
+     * Actual: Fails with NullPointerException (Unexpected exception during isValid call)
+     */
     @Test
     public void null_or_not_blank_type_on_optional_is_validated_for_null_value() {
         Model model = new Model();
@@ -110,6 +119,9 @@ public class OptionalTypeAnnotationConstraintTest {
         assertCorrectConstraintTypes(constraintViolations, NotNull.class);
     }
 
+    /**
+     * Actual: NotNull violation occurs on container's annotation
+     */
     @Test
     public void null_or_not_blank_type_on_optional_is_validated_for_empty_value() {
         Model model = new Model();
@@ -119,6 +131,9 @@ public class OptionalTypeAnnotationConstraintTest {
         assertNumberOfViolations(constraintViolations, 0);
     }
 
+    /**
+     * Actual: No violation
+     */
     @Test
     public void null_or_not_blank_type_on_optional_is_validated_for_blank_string() {
         Model model = new Model();
@@ -160,8 +175,7 @@ public class OptionalTypeAnnotationConstraintTest {
         Set<ConstraintViolation<Model>> constraintViolations = validator.validateProperty(model, "valueReference");
         assertNumberOfViolations(constraintViolations, 0);
     }
-
-
+    
     @ConstraintComposition(CompositionType.OR)
     @Null
     @NotBlank
